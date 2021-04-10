@@ -1,0 +1,41 @@
+.modal-dialog {
+    overflow-y: initial !important
+}
+
+.modal-body {
+    height: 60%;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    display: block;
+}
+
+#imgOrVidModal {
+    border: 3px solid #b7b7b7;
+    border-radius: 10px;
+    margin-left: 0px;
+    margin-right: 8px;
+}
+
+
+#district_name {
+    border: 2px solid #6d98e6;
+    border-radius: 10px;
+    margin-left: 0px;
+    margin-right: 8px;
+}
+
+#live_location {
+    border: 2px solid #6d98e6;
+    border-radius: 10px;
+    margin-left: 0px;
+    margin-right: 8px;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+thead > tr > th {
+    font-style: normal;
+    font-family: monospace;
+}

@@ -1,0 +1,34 @@
+.main-panel>.content {
+  margin-top: 0px;
+  padding: 30px 15px;
+  min-height: calc(100vh - 123px);
+}
+
+
+button#postNewsBtn {
+    /* left: auto; */
+    margin-left: 16px;
+    margin-top: 25px;
+}
+
+#multiple_imgs > .column  {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+#multiple_imgs > .column > img {
+  margin-top: 12px;
+}
+
+/* Clear floats after the columns */
+#multiple_imgs:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+div#multiple_imgs {
+    overflow: scroll;
+    height: 400px;
+}

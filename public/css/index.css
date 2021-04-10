@@ -1,0 +1,39 @@
+
+
+
+input#pLogin {
+    border: 0px solid red;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+    margin-top: 100px;
+    margin-bottom: 89px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+div#centerLogin {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width:30em;
+    height:18em;
+    margin-top: -20em; /*set to a negative number 1/2 of your height*/
+    margin-left: -12em; /*set to a negative number 1/2 of your width*/
+    border: 0px solid #ccc;
+   
+}
+
+#img_logos{
+    margin-bottom: 80px;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}

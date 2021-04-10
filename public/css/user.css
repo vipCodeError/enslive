@@ -1,0 +1,13 @@
+#user_edit_details{
+    visibility: visible;
+}
+
+#user_profile_pics{
+    visibility: visible;
+}
+
+.main-panel>.content {
+  margin-top: 0px;
+  padding: 30px 15px;
+  min-height: calc(100vh - 123px);
+}
