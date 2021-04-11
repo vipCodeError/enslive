@@ -69,9 +69,15 @@ class ApprovedNewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+      //  dd($request->is_approved);
+
+        $newsContent = NewsContent::find($request->newsId);
+        $newsContent->is_approved = $request->is_approved;
+        $newsContent->save();
+
+        return redirect()->route("approved_news.index");
     }
 
     /**
@@ -82,6 +88,11 @@ class ApprovedNewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $newsContent = NewsContent::find($id);
+        $newsContent->delete();
+
+        // $response = ["id" => $request->news_hash, "success" => true, "message" => "Successfully deleted !!!"];
+        return redirect()->route("approved_news.index");
     }
+
 }

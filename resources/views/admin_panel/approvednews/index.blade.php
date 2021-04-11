@@ -28,9 +28,9 @@
                                         <label for="inputState">Select option to be displayed</label>
                                         <select id="inputState" class="form-control">
                                             <option selected>All</option>
-                                            <option>IN PROGRESS</option>
-                                            <option>REJECTED</option>
-                                            <option>MANY MISTAKE</option>
+                                            <option value="IN_PROGRESS">IN PROGRESS</option>
+                                            <option value="REJECTED">REJECTED</option>
+                                            <option value="MANY_MISTAKE">MANY MISTAKE</option>
                                         </select>
 
                                     </div>
@@ -69,7 +69,12 @@
                                                 <td>{{$newsc->news_title}}</td>
                                                 <td>{{$newsc->created_at}}</td>
                                                 <td>{{$newsc->posted_by}}</td>
-                                                <td>{{$newsc->is_approved}}</td>
+                                                @if($newsc->is_approved == "APPROVED")
+                                                    <td style="color: #1b5e20; font-weight: bold">{{$newsc->is_approved}}</td>
+                                                @else
+                                                    <td style="color: #0b3251">{{$newsc->is_approved}}</td>
+                                                @endif
+
                                                 <td>
                                                     <div class="btn-group dropdown">
                                                         <button
@@ -85,11 +90,11 @@
                                                             </li>
                                                             <li style="margin: 4px;">
                                                                 <form
-                                                                    action="{{route('approved_news.update', $newsc->id)}}"
+                                                                    action="{{route('update_status.update', [$newsc, 'newsId' => $newsc->id, 'is_approved' => 'APPROVED'])}}"
                                                                     onsubmit="return confirm('Are you want to APPROVED ?');"
                                                                     method="POST">
                                                                     @csrf
-                                                                    @method('POST')
+                                                                    @method('PUT')
                                                                     <button class="btn btn-info" type="submit">CONFIRM
                                                                         APPROVED
                                                                     </button>
@@ -98,11 +103,11 @@
 
                                                             <li style="margin: 4px;">
                                                                 <form
-                                                                    action="{{route('approved_news.update', $newsc->id)}}"
+                                                                    action="{{route('approved_news.update', [$newsc, 'newsId' => $newsc->id, 'is_approved' => 'REJECTED'])}}"
                                                                     onsubmit="return confirm('Are you want to REJECT ?');"
                                                                     method="POST">
                                                                     @csrf
-                                                                    @method('POST')
+                                                                    @method('PUT')
                                                                     <button class="btn btn-info" type="submit">REJECT
                                                                     </button>
                                                                 </form>
@@ -122,11 +127,11 @@
 
                                                             <li style="margin: 4px;">
                                                                 <form
-                                                                    action="{{route('approved_news.update', $newsc->id)}}"
+                                                                    action="{{route('approved_news.update',[$newsc, 'newsId' => $newsc->id, 'is_approved' => 'MANY MISTAKE'])}}"
                                                                     onsubmit="return confirm('Are you want to SET AS MISTAKE ?');"
                                                                     method="POST">
                                                                     @csrf
-                                                                    @method('POST')
+                                                                    @method('PUT')
                                                                     <button class="btn btn-info" type="submit">MANY
                                                                         MISTAKE
                                                                     </button>
@@ -135,11 +140,11 @@
 
                                                             <li style="margin: 4px;">
                                                                 <form
-                                                                    action="{{route('approved_news.update', $newsc->id)}}"
+                                                                    action="{{route('approved_news.update', [$newsc, 'newsId' => $newsc->id, 'is_approved' => 'DUPLICATE'])}}"
                                                                     onsubmit="return confirm('Are you want to SET AS DUPLICATE ?');"
                                                                     method="POST">
                                                                     @csrf
-                                                                    @method('POST')
+                                                                    @method('PUT')
                                                                     <button class="btn btn-info" type="submit">
                                                                         DUPLICATE
                                                                     </button>

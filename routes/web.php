@@ -20,6 +20,8 @@ Route::get('/', function () {
 });
 
 Route::resource("post_news", PostNewsController::class);
+Route::resource('update_status', ApprovedNewsController::class)->only('update');
+
 Route::resource("approved_news", ApprovedNewsController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

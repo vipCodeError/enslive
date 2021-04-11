@@ -61,10 +61,6 @@ class PostNewsController extends BaseController
     }
 
     function destroy(Request $request){
-        $newsContent = NewsContent::where("news_hash", $request->news_hash)->find();
-        $newsContent->delete();
 
-        // $response = ["id" => $request->news_hash, "success" => true, "message" => "Successfully deleted !!!"];
-        return redirect()->route("post_news.index");
     }
 }

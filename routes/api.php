@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Http\Controllers\Api;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApprovedNewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/greeting', function () {
-    return 'Hello World';
-});
+Route::get('get_news_content', [ApprovedNewsController::class, 'getNewsContent']);
+Route::put("update_status", [ApprovedNewsController::class, 'updateStatus']);
+
