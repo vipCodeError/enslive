@@ -14,6 +14,7 @@
                 </button>
             </div>
         </nav>
+        @include('util/flash-message')
         <!-- End Navbar -->
         <div class="content">
             <div class="container-fluid">
@@ -27,7 +28,7 @@
                                                 @csrf
                                             <div class="col-lg-8">
                                                 <label class="bmd-label-floating">Upload Single or Multiple Images</label>
-                                                <input id="uploadFiles" type="file" name="image" multiple="multiple" class="form-control"/>
+                                                <input id="uploadFiles" type="file" name="image[]"  class="form-control" multiple/>
                                             </div>
 
                                             <div class="col-md-12"  style="margin-top: 32px;">

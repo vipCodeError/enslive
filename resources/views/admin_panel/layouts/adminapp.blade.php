@@ -74,7 +74,6 @@
             </ul>
         </div>
     </div>
-
     @yield('content')
     <footer class="footer">
         <div class="container-fluid">

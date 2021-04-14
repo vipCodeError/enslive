@@ -23,7 +23,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <form class="form-horizontal" action="{{ route('post_news.store') }}" method="POST" enctype="multipart/form-data">
+                                        <form class="form-horizontal" action="{{ route('post_news.update') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-lg-8">
                                                 <label class="bmd-label-floating">Upload Single or Multiple Images</label>
@@ -39,7 +39,7 @@
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="district" value="{{$newsC->district}}" placeholder="Search District"
+                                                    <input type="text" class="form-control" name="district" value="{{$newsC->district_name}}" placeholder="Search District"
                                                            id="selectDistrict">
                                                 </div>
                                             </div>
@@ -80,7 +80,7 @@
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" value="{{$newsC->live_location}}" name="live_location"
+                                                    <input type="text" class="form-control" value="{{$newsC->liveLocation}}" name="live_location"
                                                            placeholder="Search your live location" id="pac-input">
                                                 </div>
                                             </div>
@@ -168,8 +168,7 @@
                     ]
                 });
                 $(document).ready(function () {
-                    var data = "{{$newsC->news_content}}";
-                    $(".note-editable")[0].innerText = data;
+                    $(".note-editable")[0].innerText = "{{$newsC->news_content}}";
                 });
             </script>
 

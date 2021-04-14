@@ -13,7 +13,7 @@ class CreatePollTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('polls', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('back_img')->nullable();
             $table->string('correct_ans')->nullable();

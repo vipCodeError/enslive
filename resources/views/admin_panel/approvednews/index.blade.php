@@ -115,7 +115,7 @@
 
                                                             <li style="margin: 4px;">
                                                                 <form
-                                                                    action="{{route('approved_news.update', $newsc->id)}}"
+                                                                    action="{{route('approved_news.destroy', $newsc->id)}}"
                                                                     onsubmit="return confirm('Are you want to DELETE ?');"
                                                                     method="POST">
                                                                     @csrf

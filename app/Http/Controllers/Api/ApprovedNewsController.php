@@ -23,7 +23,7 @@ class ApprovedNewsController extends Controller
     /*
      * like count
      * */
-    function getLikesCount(){
+    function getLikesCountByNewsHash(Request $request){
 
     }
 
@@ -35,7 +35,7 @@ class ApprovedNewsController extends Controller
     /*
      *  share count
      * */
-    function getShareCount(){
+    function getShareCountByNewsHash(Request $request){
 
     }
 
@@ -46,7 +46,7 @@ class ApprovedNewsController extends Controller
     /*
      *  comment by news id
      * */
-    function getCommentByNewsId(){
+    function getCommentByNewsHash(Request $request){
 
     }
 

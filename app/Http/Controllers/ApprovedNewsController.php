@@ -59,6 +59,7 @@ class ApprovedNewsController extends Controller
     public function edit($id)
     {
         $newsC = NewsContent::where("id", decrypt($id))->first();
+        $newsC->news_content = str_replace( "\n","",$newsC->news_content);
         return view('admin_panel.approvednews.edit', compact('newsC'));
     }
 
@@ -71,8 +72,6 @@ class ApprovedNewsController extends Controller
      */
     public function update(Request $request)
     {
-      //  dd($request->is_approved);
-
         $newsContent = NewsContent::find($request->newsId);
         $newsContent->is_approved = $request->is_approved;
         $newsContent->save();

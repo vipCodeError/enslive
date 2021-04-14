@@ -6,6 +6,7 @@ use App\Models\NewsContent;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use App\Http\Controllers\BaseController;
+use Illuminate\Support\Facades\Storage;
 
 class PostNewsController extends BaseController
 {
@@ -18,6 +19,7 @@ class PostNewsController extends BaseController
     }
 
     function store(Request $request){
+        $imgUri = $this->upload_post_image($request);
         $newsContent = new NewsContent();
         $newsContent->district_name = $request->district;
         $newsContent->edition = $request->edition;
@@ -27,13 +29,13 @@ class PostNewsController extends BaseController
         $newsContent->news_content = $request->news_content_data;
         $newsContent->news_hash = $request->news_hash;
         $newsContent->news_title = $request->news_title;
-        $newsContent->photos_vid = $request->photos_vid;
+        $newsContent->photos_vid = $imgUri;
         $newsContent->posted_by = $request->posted_by;
         $newsContent->should_notify = $request->should_notify;
         $newsContent->what_is = $request->what_is;
         $newsContent->save();
 
-        return redirect()->route("post_news.index");
+        return redirect()->route("post_news.index")->with('success','News created successfully!');
     }
 
     function update(Request $request){
@@ -52,7 +54,7 @@ class PostNewsController extends BaseController
         $newsContent->what_is = $request->what_is;
         $newsContent->save();
 
-        return redirect()->route("post_news.index");
+        return redirect()->route("post_news.index")->with('success','News Updated successfully!');
     }
 
     function edit(Request $request){
@@ -62,5 +64,28 @@ class PostNewsController extends BaseController
 
     function destroy(Request $request){
 
+    }
+
+    public function upload_post_image(Request $request): string
+    {
+//        $request->validate([
+//            'image' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048'
+//        ]);
+
+        $images=array();
+        if($request->hasFile('image')){
+            $files = $request->file('image');
+            foreach($files as $file){
+                echo $file;
+                $imageName = time().$file->getClientOriginalName();
+                $filePath = 'images/'.$imageName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $images[]=$filePath;
+            }
+
+            return implode("|",$images);
+        }else {
+            return "";
+        }
     }
 }
