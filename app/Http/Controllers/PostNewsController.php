@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewsContent;
+use App\Models\NewsCountDetails;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use App\Http\Controllers\BaseController;
@@ -34,6 +35,10 @@ class PostNewsController extends BaseController
         $newsContent->should_notify = $request->should_notify;
         $newsContent->what_is = $request->what_is;
         $newsContent->save();
+
+        $newsCountDetails = new NewsCountDetails();
+        $newsCountDetails->id = $newsContent->id;
+        $newsCountDetails->save();
 
         return redirect()->route("post_news.index")->with('success','News created successfully!');
     }

@@ -16,14 +16,17 @@ use App\Http\Controllers\ApprovedNewsController;
 */
 
 Route::get('/', function () {
-    return view(    'admin');
+    return view(    'auth/login');
 });
 
-Route::resource("post_news", PostNewsController::class);
-Route::resource('update_status', ApprovedNewsController::class)->only('update');
+Route::group(['middleware' => 'auth'], function(){
+    Route::resource("post_news", PostNewsController::class);
+    Route::resource('update_status', ApprovedNewsController::class)->only('update');
 
-Route::resource("approved_news", ApprovedNewsController::class);
+    Route::resource("approved_news", ApprovedNewsController::class);
+
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return view('admin');
+})->name('admin');

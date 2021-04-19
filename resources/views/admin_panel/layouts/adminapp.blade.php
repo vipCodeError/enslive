@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png')}}">
@@ -26,6 +25,7 @@
 </head>
 
 <body>
+@include('admin_panel.util.verifyuser')
 <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
 
@@ -125,8 +125,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 <!-- Library for adding dinamically elements -->
 <script src="{{ asset('js/plugins/arrive.min.js')}}"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Chartist JS -->
 <script src="{{ asset('js/plugins/chartist.min.js')}}"></script>
 <!--  Notifications Plugin    -->

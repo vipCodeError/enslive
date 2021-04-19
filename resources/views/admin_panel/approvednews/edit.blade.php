@@ -14,6 +14,7 @@
                 </button>
             </div>
         </nav>
+       @include('util/flash-message')
         <!-- End Navbar -->
         <div class="content">
             <div class="container-fluid">
@@ -23,7 +24,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <form class="form-horizontal" action="{{ route('post_news.update') }}" method="POST" enctype="multipart/form-data">
+                                        <form class="form-horizontal" action="{{ route('post_news.update', $newsC->id) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-lg-8">
                                                 <label class="bmd-label-floating">Upload Single or Multiple Images</label>

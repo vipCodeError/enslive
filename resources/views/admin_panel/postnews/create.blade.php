@@ -120,6 +120,13 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-12">
+                                                <p class="info">Type your hashtag & click enter.</p>
+                                                <input type="text" id="hashtags" autocomplete="off">
+                                                <div class="tag-container">
+                                                </div>
+                                            </div>
+
                                             <div class="row" style="margin-top: 10px; background-color: #fff; padding: 0px;margin-left: 10px">
                                                 <div class="card" style="margin-left: 16px; margin-right: 16px; background-color: antiquewhite">
                                                     <div class="card-body">
@@ -281,7 +288,7 @@
 
     </script>
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-tZ7uIHtNd0YAOkVnA7OYkKwN4_e-dlg&libraries=places&language=en&callback=initialize"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0-8bE5ocFailjch9oYKQnCEiUqOGIjtQ&libraries=places&language=en&callback=initialize"
         async defer></script>
 
 @endsection
