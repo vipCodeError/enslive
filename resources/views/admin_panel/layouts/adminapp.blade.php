@@ -19,13 +19,18 @@
     <link href="{{ asset('css/index.css')}}" rel="stylesheet"/>
     <link href="{{ asset('/css/dashboard.css')}}" rel="stylesheet" />
     <link href="{{ asset('/css/news-content.css')}}" rel="stylesheet" />
+    <link href="{{ asset('/css/tag_editor.css')}}" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/css/bootstrapValidator.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css">
+    <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.js" type="text/javascript" />
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/css/bootstrapValidator.min.css">
+
 </head>
 
 <body>
-@include('admin_panel.util.verifyuser')
 <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
 
@@ -35,38 +40,40 @@
             </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="nav-item active  ">
-                    <a class="nav-link" href="./dashboard.php">
+                <li class="nav-item {{ (request()->is('dashboard')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route("admin")}}">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+                @if(auth()->user()->user_type == 'ADMIN')
                 <li class="nav-item ">
-                    <a class="nav-link" href="./user.php">
+                    <a class="nav-link  {{ (request()->is('profile_user')) ? 'active' : '' }}" href="{{route("profile_user.create")}}">
                         <i class="material-icons">person</i>
                         <p>User Profile</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./adduser.php">
+                    <a class="nav-link {{ (request()->is('add_user')) ? 'active' : '' }}" href="{{route("add_user.index")}}">
                         <i class="material-icons">person</i>
                         <p>Add User</p>
                     </a>
                 </li>
-                <li class="nav-item ">
+                @endif
+                <li class="nav-item {{ (request()->is('post_news')) ? 'active' : '' }} ">
                     <a class="nav-link" href="{{route("post_news.index")}}">
                         <i class="material-icons">content_paste</i>
                         <p>Post News</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ (request()->is('approved_news')) ? 'active' : '' }}">
                     <a class="nav-link" href="{{route("approved_news.index")}}">
                         <i class="material-icons">content_paste</i>
                         <p>Approved User News</p>
                     </a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="./post_poll.php">
+                <li class="nav-item {{ (request()->is('poll_add')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('poll_add.index')}}">
                         <i class="material-icons">library_books</i>
                         <p>Post Poll</p>
                     </a>
@@ -89,6 +96,7 @@
 </div>
 </div>
 
+@yield('tag_editor')
 @yield('summer_note')
 
 <!--   Core JS Files   -->

@@ -120,10 +120,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12">
-                                                <p class="info">Type your hashtag & click enter.</p>
-                                                <input type="text" id="hashtags" autocomplete="off">
-                                                <div class="tag-container">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="col-lg-12 control-label" style="margin-bottom: 10px;">Add HashTag about this news</label>
+                                                    <div class="col-lg-12" style="margin-top: 23px;padding: 14px;">
+                                                        <input type="text" name="cities" id="aa" class="form-control" value="" data-role="tagsinput" />
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -147,7 +149,9 @@
 
                                         </form>
                                     </div>
-
+                                    <div class="col-md-4">
+                                        <img width="100%" height="250px" style="margin: 10px" id="img_box" src="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +182,82 @@
 
 @endsection
 
+        @section('tag_editor')
+            <script>
+                $(document).ready(function () {
+                    $('#defaultForm')
+                        .find('[name="cities"]')
+                        // Revalidate the color when it is changed
+                        .change(function (e) {
+                            console.warn($('[name="cities"]').val());
+                            console.info($('#aa').val());
+                            console.info($("#aa").tagsinput('items'));
+                            var a = $("#aa").tagsinput('items');
+                            console.log(typeof (a));
+                            console.log(a.length);
+                            $('#defaultForm').bootstrapValidator('revalidateField', 'cities');
+                        })
+                        .end()
+                        .bootstrapValidator({
+                            excluded: ':disabled',
+                            feedbackIcons: {
+                                valid: 'glyphicon glyphicon-ok',
+                                invalid: 'glyphicon glyphicon-remove',
+                                validating: 'glyphicon glyphicon-refresh'
+                            },
+                            fields: {
+                                cities: {
+                                    validators: {
+                                        notEmpty: {
+                                            message: 'Please enter at least one city you like the most'
+                                        }
+                                    }
+                                },
+                                cities1: {
+                                    validators: {
+                                        callback: {
+                                            message: 'Please choose 2-4 color you like most',
+                                            callback: function (value, validator) {
+                                                // Get the selected options
+                                                var options = validator.getFieldElements('cities1').tagsinput('items');
+                                                // console.info(options);
+                                                return (options !== null && options.length >= 2 && options.length <= 4);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        })
+                        .on('success.form.bv', function (e) {
+                            // Prevent form submission
+                            e.preventDefault();
+                        });
+                });
+
+                $(".bootstrap-tagsinput").css("background-color", "yellow");
+            </script>
+        @endsection
+
 @section('script')
+    <script>
+        $("#img_box").hide();
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#img_box').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        $("#uploadFiles").change(function() {
+            readURL(this);
+            $("#img_box").show();
+        });
+    </script>
 
     <script>
         $(document).ready(function () {

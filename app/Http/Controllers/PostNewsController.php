@@ -20,6 +20,7 @@ class PostNewsController extends BaseController
     }
 
     function store(Request $request){
+
         $imgUri = $this->upload_post_image($request);
         $newsContent = new NewsContent();
         $newsContent->district_name = $request->district;
@@ -31,7 +32,7 @@ class PostNewsController extends BaseController
         $newsContent->news_hash = $request->news_hash;
         $newsContent->news_title = $request->news_title;
         $newsContent->photos_vid = $imgUri;
-        $newsContent->posted_by = $request->posted_by;
+        $newsContent->posted_by = auth()->user()->name;
         $newsContent->should_notify = $request->should_notify;
         $newsContent->what_is = $request->what_is;
         $newsContent->save();
@@ -43,18 +44,16 @@ class PostNewsController extends BaseController
         return redirect()->route("post_news.index")->with('success','News created successfully!');
     }
 
-    function update(Request $request){
-        $newsContent = NewsContent::where("news_hash", $request->news_hash)->first();
+    function update(Request $request, $id){
+        $newsContent = NewsContent::where("id", $id)->first();
         $newsContent->district_name = $request->district;
         $newsContent->edition = $request->edition;
-        $newsContent->is_approved = $request->is_approved;
-        $newsContent->live_location = $request->live_location;
+        $newsContent->is_approved = "NOT APPROVED";
+        $newsContent->liveLocation = $request->live_location;
         $newsContent->long_content = $request->long_content;
         $newsContent->news_content = $request->news_content;
-        $newsContent->news_hash = $request->news_hash;
         $newsContent->news_title = $request->news_title;
         $newsContent->photos_vid = $request->photos_vid;
-        $newsContent->posted_by = $request->posted_by;
         $newsContent->should_notify = $request->should_notify;
         $newsContent->what_is = $request->what_is;
         $newsContent->save();
@@ -83,8 +82,8 @@ class PostNewsController extends BaseController
             foreach($files as $file){
                 echo $file;
                 $imageName = time().$file->getClientOriginalName();
-                $filePath = 'images/'.$imageName;
-                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $filePath = 'enslive_object/news_content/'.$imageName;
+                Storage::disk('s3')->put($filePath,  file_get_contents($file));
                 $images[]=$filePath;
             }
 

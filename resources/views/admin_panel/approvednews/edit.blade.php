@@ -25,6 +25,7 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <form class="form-horizontal" action="{{ route('post_news.update', $newsC->id) }}" method="POST" enctype="multipart/form-data">
+                                            <input name="_method" type="hidden" value="PATCH">
                                             @csrf
                                             <div class="col-lg-8">
                                                 <label class="bmd-label-floating">Upload Single or Multiple Images</label>
