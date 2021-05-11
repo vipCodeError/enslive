@@ -27,7 +27,6 @@ class PostNewsController extends BaseController
         $newsContent->edition = $request->edition;
         $newsContent->is_approved = "NOT APPROVED";
         $newsContent->liveLocation = $request->live_location;
-        $newsContent->long_content = $request->long_content;
         $newsContent->news_content = $request->news_content_data;
         $newsContent->news_hash = $request->news_hash;
         $newsContent->news_title = $request->news_title;
@@ -50,7 +49,6 @@ class PostNewsController extends BaseController
         $newsContent->edition = $request->edition;
         $newsContent->is_approved = "NOT APPROVED";
         $newsContent->liveLocation = $request->live_location;
-        $newsContent->long_content = $request->long_content;
         $newsContent->news_content = $request->news_content;
         $newsContent->news_title = $request->news_title;
         $newsContent->photos_vid = $request->photos_vid;
