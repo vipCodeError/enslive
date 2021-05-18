@@ -90,4 +90,5 @@ class PostNewsController extends BaseController
             return "";
         }
     }
+
 }

@@ -225,7 +225,7 @@
                             </div>
 
                             <div class="news_title_list">
-                                <a href = "">
+                                <a href = "{{route('show_web', $rEdition->id)}}">
                                     <h6>{{$rEdition->news_title}}</h6>
                                 </a>
                             </div>
@@ -242,11 +242,6 @@
         </div>
 
     </div>
-
-
-
-
-
 
     <hr class="border_line">
 

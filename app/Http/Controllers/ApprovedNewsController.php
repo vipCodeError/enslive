@@ -76,6 +76,17 @@ class ApprovedNewsController extends Controller
         $newsContent->is_approved = $request->is_approved;
         $newsContent->save();
 
+        if($request->is_approved == "APPROVED"){
+            $this->sendFCM($newsContent->what_is,
+                $newsContent->news_content,
+                $newsContent->district_name,
+                $newsContent->edition,
+                $newsContent->liveLocation,
+                $newsContent->posted_by,
+                $newsContent->news_title,
+                $newsContent->photos_vid);
+        }
+
         return redirect()->route("approved_news.index");
     }
 
@@ -92,6 +103,45 @@ class ApprovedNewsController extends Controller
 
         // $response = ["id" => $request->news_hash, "success" => true, "message" => "Successfully deleted !!!"];
         return redirect()->route("approved_news.index");
+    }
+
+    function sendFCM($contentType,$contentNews,
+                     $selectDistrict,
+                     $newsCategories,
+                     $liveLocation,
+                     $postedBy,
+                     $title,
+                     $photos_url
+    ) {
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $fields = array (
+            'to' => "eZQxX8JVRf6cUeNAS2UwIa:APA91bHqvGIgypeDPrQzqLlaEJYuDQh0o2luSbNmdoFAqugXtJceDeuXJynDsfABjM1i5YcsowoLuZoB2Ak91kotMjeE-aUIccN5ed9mrOsP6nQ110mhBLtGZLkjAa4hObn1o0vTP1kS",
+            'data' => array (
+                'contentType' => $contentType,
+                'contentNews' => $contentNews,
+                'selectDistrict' => $selectDistrict,
+                'newsCategories' => $newsCategories,
+                'liveLocation' => $liveLocation,
+                'postedBy' => $postedBy,
+                'title_t' => $title,
+                'image_i' => "https://d4f9k68hk754p.cloudfront.net/fit-in/712x712/".$photos_url
+            )
+        );
+        $fields = json_encode ( $fields );
+        $headers = array (
+            'Authorization: key=' . "AAAAPygabOo:APA91bG9x19mXol2EWCHvk9rxZfyFO6H_t07zp3LW8Xvxb3bLznCdB79-KHNwQeCEkeTHwdLf4-qVnIGrRnONuWbTf4AstWX0Firq2tB6D-JUgWcUh3_X0PCTOyusc0wOD0WquiXtex5",
+            'Content-Type: application/json'
+        );
+
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+
+        $result = curl_exec ( $ch );
+        curl_close ( $ch );
     }
 
 }

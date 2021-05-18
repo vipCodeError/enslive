@@ -538,4 +538,32 @@
     </div>
 
 
+    <script>
+        function sendMessage(title, photosUrl, contentType, contentNews, selectDistrict, newsCategories, liveLocation, postedBy) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "https://fcm.googleapis.com/fcm/send");
+            xmlhttp.setRequestHeader("Content-Type", "application/json");
+            xmlhttp.setRequestHeader("Authorization", "Key = AAAAPygabOo:APA91bG9x19mXol2EWCHvk9rxZfyFO6H_t07zp3LW8Xvxb3bLznCdB79-KHNwQeCEkeTHwdLf4-qVnIGrRnONuWbTf4AstWX0Firq2tB6D-JUgWcUh3_X0PCTOyusc0wOD0WquiXtex5");
+            xmlhttp.send(JSON.stringify({
+                // "notification": {
+                //     "title": title,
+                //     "image": "http://test.enslive.net/v1/api/create/upload_vid_img/" + photosUrl,
+                // },
+                "data": {
+                    "contentType": contentType,
+                    "contentNews": contentNews,
+                    "selectDistrict": selectDistrict,
+                    "newsCategories": newsCategories,
+                    "liveLocation": liveLocation,
+                    "postedBy": postedBy,
+                    "title_t": title,
+                    "image_i": "http://test.enslive.net/v1/api/create/upload_vid_img/" + photosUrl,
+                },
+
+                "to": "/topics/all"
+
+            }));
+        }
+
+    </script>
 @endsection

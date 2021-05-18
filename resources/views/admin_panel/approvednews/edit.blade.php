@@ -170,7 +170,7 @@
                     ]
                 });
                 $(document).ready(function () {
-                    $(".note-editable")[0].innerText = "{{$newsC->news_content}}";
+                    $(".note-editable")[0].innerText = "{!!html_entity_decode($newsC->news_content)!!}";
                 });
             </script>
 
