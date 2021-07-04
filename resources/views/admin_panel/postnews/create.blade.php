@@ -104,7 +104,7 @@
                                             <div class="col-md-12" id="youtubeTag">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Youtube Url</label>
-                                                    <input type="text" name="photos_vid" class="form-control" id="youtubeUrl">
+                                                    <input type="text" name="youtube_link" class="form-control" id="youtubeUrl">
                                                 </div>
                                             </div>
 

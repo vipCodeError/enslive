@@ -45,7 +45,6 @@ div.story-card {
     margin-bottom: 20px;
     background: #FFF;
     overflow: hidden;
-    box-shadow: -8px 0px 1px #aaaaaa;
 }
 
 .focuspoint {
@@ -87,7 +86,7 @@ div.story-card-news {
 }
 div.story-card-news {
     box-sizing: border-box;
-    float: right;
+
     height: 115px;
     position: relative;
     padding: 7px 10px 10px 10px!important;
@@ -129,6 +128,10 @@ news>span {
     display: inline-block;
     text-transform: uppercase;
     font-weight: 600;
+}
+
+h5.news_content_det {
+    font-size: 17px;
 }
 
 news>h2 a, div.story-card-news>h2{
@@ -227,10 +230,9 @@ hr.border_line {
     text-align: center;
     height: 16%;
     bottom: 3px;
-    padding: 20px;
     background: rgb(0, 0, 0);
     background: rgb(158 158 158 / 68%);
-    padding-bottom: 48px;
+    padding: 20px 20px 48px;
 }
 
 .poll_space {
@@ -583,6 +585,7 @@ i.fa.fa-play-circle {
 }
 .title_n > h6 {
     font-weight: 900;
+    font-size: 23px;
 }
 
 .loc_d {
@@ -754,7 +757,7 @@ body {
 
 
 div#navbarNavDropdown {
-    background: #f3ce1bf7;
+    background: #4f5fa0;
     font-size: inherit;
     font-weight: bold;
     margin-left: -16px;
@@ -762,8 +765,20 @@ div#navbarNavDropdown {
     padding: 0px;
 }
 
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(255 255 255 / 98%);
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgba(0,0,0,.9);
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgb(255 255 255 / 90%);
+}
+
 li.nav-item.active {
-    border-bottom: 5px solid #fd2e2e;
+    border-bottom: 5px solid #ffffff;
 }
 
 .dropdown-menu.show {

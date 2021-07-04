@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -28,11 +29,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{asset('css/web_css/index.css?ver=1.2')}}">
+    <link rel="stylesheet" href="{{asset('public/css/web_css/index.css?ver=1.2')}}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/487757727e.js"></script>
-    <script src="{{asset('js/moment.js')}}"></script>
+    <script src="{{asset('public/js/moment.js')}}"></script>
     <title>ENS Live Breaking News</title>
 </head>
 
@@ -59,7 +60,7 @@
                         <div class="row" style="margin-left:0px;margin-right:0px">
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                                 <a href="https://enslive.net">
-                                    <img src="{{asset('img/ens_new_logo.jpeg')}}" width="200px" height="100%" alt="return to frontpage">
+                                    <img src="{{asset('public/img/ens_new_logo.jpeg')}}" width="200px" height="100%" alt="return to frontpage">
                                 </a>
                             </div>
 
@@ -68,13 +69,14 @@
                             </div>
 
                         </div>
+
                     </div>
                 </div>
 
             </section>
 
             <!--    Navbar            -->
-                <!--    Navbar            -->
+                     <!--    Navbar            -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nnav">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,8 +137,97 @@
     </div>
 </div>
 
+<!-- Latest News   -->
+<div class="container">
 
-@yield('content')
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 root_one">
+            <div class="col-12 col-lg-12">
+                @foreach($eData as $e_data)
+                    <div class="row news_card_cat">
+                        <div class="col-lg-4">
+                            <img src="https://d4f9k68hk754p.cloudfront.net/fit-in/300x400/{{$e_data->photos_vid}}" width="100%" height="200px">
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="col-lg-12">
+                                <h2 class="title_n"><a href="{{route('show_web', $e_data->id)}}">{{$e_data->news_title}}</a></h2>
+                               <h5 class="news_content_det" style="overflow: hidden;
+   text-overflow: ellipsis;height: 100px">{!!html_entity_decode($e_data->news_content)!!}</h5>
+                            </div>
+                            <div class="row" style="display: flex; justify-content: space-between; margin-left: 16px; margin-right: 16px;">
+                                <div class="row loc_d"  style="margin-left: 4px;">
+                                    <i class="fa fa-map-marker"></i>
+                                    <h4>{{$e_data->liveLocation}}</h4>
+                                </div>
+                                <h6>{{$e_data->created_at}}</h6>
+                            </div>
+                        </div>
+
+                    </div>
+
+                @endforeach
+                
+                          <div class="col-lg-12 clearfix" style="margin-top: 16px;">
+                        <div class="float-left"
+                        {{$eData->links()}}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr class="border_line">
+
+    <div class="footer shadow-sm p-3 mb-0 bg-white rounded">
+        <br>
+        <div class="row d-flex justify-content-between ">
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 download_at">
+                <h7>Downloads</h7>
+                <a href=""><i class="fa fa-android" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 enslive_txt">
+                <h5>ENS Live</h5>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-2 col-lg-2 follow_us">
+                <h7>Follow us</h7>
+                <a href="https://www.facebook.com/enslive.net"><i class="fa fa-facebook" aria-hidden="true"></i></a>|
+                <a href="https://twitter.com/balabhaannu"><i class="fa fa-twitter" aria-hidden="true"></i></a>|
+                <a href="https://www.linkedin.com/in/ens-live-280494145/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>|
+                <a href="https://www.instagram.com/ens_balu/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <hr class="footer_line">
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 footer_notem mt-5">
+            <div class="row">
+            </div>
+        </div>
+
+        <hr class="footer_line">
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 owner_details_link">
+            <div class="row d-flex justify-content-between">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
+                    <h8><a href="">About Us</a></h8> |
+                    <h8><a href="">Privacy</a></h8> |
+                    <h8><a href="">Contact Us</a></h8> |
+                    <h8><a href="">Terms and Conditions</a></h8>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6" style="text-align: right">
+                    <h8><a href="">Copyright@2020ENSLive</a></h8>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 
 <script>
     window.onscroll = function() {
@@ -156,14 +247,11 @@
         }
     }
 </script>
-<!-- Optional JavaScript; choose one of the two! -->
 
-<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-@yield('script')
 <script>
     $(document).ready(function(){
         var paths =
@@ -185,5 +273,4 @@
     });
 
 </script>
-</body>
-</html>
+</body></html>

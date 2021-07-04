@@ -76,16 +76,19 @@ class ApprovedNewsController extends Controller
         $newsContent->is_approved = $request->is_approved;
         $newsContent->save();
 
-        if($request->is_approved == "APPROVED"){
-            $this->sendFCM($newsContent->what_is,
-                $newsContent->news_content,
-                $newsContent->district_name,
-                $newsContent->edition,
-                $newsContent->liveLocation,
-                $newsContent->posted_by,
-                $newsContent->news_title,
-                $newsContent->photos_vid);
-        }
+		//if($request->should_notify  == "Yes"){
+          if($request->is_approved == "APPROVED"){
+              $this->sendFCM($newsContent->what_is,
+                  $newsContent->news_content,
+                  $newsContent->district_name,
+                  $newsContent->edition,
+                  $newsContent->liveLocation,
+                  $newsContent->posted_by,
+                  $newsContent->news_title,
+                  $newsContent->photos_vid);
+          }
+       // }
+        
 
         return redirect()->route("approved_news.index");
     }
@@ -114,17 +117,19 @@ class ApprovedNewsController extends Controller
                      $photos_url
     ) {
         $url = 'https://fcm.googleapis.com/fcm/send';
+        $photo_u = $photos_url ? : "";
         $fields = array (
-            'to' => "eZQxX8JVRf6cUeNAS2UwIa:APA91bHqvGIgypeDPrQzqLlaEJYuDQh0o2luSbNmdoFAqugXtJceDeuXJynDsfABjM1i5YcsowoLuZoB2Ak91kotMjeE-aUIccN5ed9mrOsP6nQ110mhBLtGZLkjAa4hObn1o0vTP1kS",
+             'to' => "/topics/all",
+          // 'to' => "fiImwIXyTxqdZm1YoJUGnI:APA91bG7pDukqB-083EW9LUNyITs0kU8REghI1B3U2damre0HAP6UFnSelsVoa-HGut4QcvR3vO65azM1QYvQNkd8EC_WnXK3kA_4VgYL15GzOR47z9JugxQpNLuVg-hBB8mqIx0Xur-",
             'data' => array (
-                'contentType' => $contentType,
-                'contentNews' => $contentNews,
-                'selectDistrict' => $selectDistrict,
-                'newsCategories' => $newsCategories,
-                'liveLocation' => $liveLocation,
-                'postedBy' => $postedBy,
-                'title_t' => $title,
-                'image_i' => "https://d4f9k68hk754p.cloudfront.net/fit-in/712x712/".$photos_url
+                'contentType' => $contentType ? : "",
+                'contentNews' => $contentNews ? : "",
+                'selectDistrict' => $selectDistrict ? : "",
+                'newsCategories' => $newsCategories ? : "",
+                'liveLocation' => $liveLocation ? : "",
+                'postedBy' => $postedBy ? : "",
+                'title_t' => $title ? : "",
+                'image_i' => "https://d4f9k68hk754p.cloudfront.net/fit-in/712x712/".$photo_u
             )
         );
         $fields = json_encode ( $fields );
@@ -143,5 +148,4 @@ class ApprovedNewsController extends Controller
         $result = curl_exec ( $ch );
         curl_close ( $ch );
     }
-
 }

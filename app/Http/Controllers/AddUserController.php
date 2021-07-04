@@ -37,12 +37,15 @@ class AddUserController extends Controller
      */
     public function store(Request $request)
     {
-        $imgUri = $this->upload_post_image($request);
+
         $user = new User();
         $user->name = $request->user_name;
         $user->email = $request->email;
         $user->phone = $request->mobile_number;
-        $user->profile_img_url = $imgUri;
+        if($request->hasFile('image')) {
+            $imgUri = $this->upload_post_image($request);
+            $user->profile_img_url = $imgUri;
+        }
         $user->password = Hash::make($request->password);
         $user->designation = $request->desig;
         $user->district_choice = $request->search_district;

@@ -15,17 +15,17 @@ class ApprovedNewsController extends Controller
 {
     function getNewsContent(){
 
-        return DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
+       return DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
             ->join('count_news','news_content.id', '=','count_news.id')
             ->select(['news_content.*','users.designation','users.profile_img_url','users.user_type',
                 'count_news.share_count','count_news.likes_count',
                 'count_news.comments_count', 'count_news.view_count'])
-            ->where('is_approved','APPROVED')
+                ->where('is_approved', 'APPROVED')
             ->orderByDesc("created_at")->paginate(15);
 
     }
 
-    /*
+	 /*
      * getContent by id
      * */
     function getNewsContentById(Request $request){
@@ -38,7 +38,18 @@ class ApprovedNewsController extends Controller
             ->where('news_content.id', $request->id)->get();
 
     }
+    
+    function getNewsContentByDistrict(Request $request){
 
+        return DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
+            ->join('count_news','news_content.id', '=','count_news.id')
+            ->select(['news_content.*','users.designation','users.profile_img_url','users.user_type',
+                'count_news.share_count','count_news.likes_count',
+                'count_news.comments_count', 'count_news.view_count'])
+            ->where('news_content.district_name', '=', $request->district_names)->limit(10)->get();
+
+    }
+    
     /*
      * get news by news card
      * */
@@ -48,7 +59,7 @@ class ApprovedNewsController extends Controller
             ->select(['news_content.*','users.designation','users.profile_img_url','users.user_type',
                 'count_news.share_count','count_news.likes_count',
                 'count_news.comments_count', 'count_news.view_count'])->where("edition", $request->edition)
-            ->where('is_approved','APPROVED')
+                 ->where('is_approved', 'APPROVED')
             ->orderByDesc("created_at")->paginate(15);
     }
 

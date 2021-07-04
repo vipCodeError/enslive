@@ -130,7 +130,7 @@ class AuthController extends Controller
             return [
                 "url" => "",
                 "success" => "true",
-                "message" => "Image did not uploaded",
+                "message" => "Image uploaded successfully",
             ];
         }
     }

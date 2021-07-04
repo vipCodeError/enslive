@@ -56,7 +56,7 @@
                 <div class="col-12 col-sm-4" id="profile_card_details">
                     <div class="row">
                         <div class="col-4 col-sm-4">
-                            <img id="profile_pics" class="rounded-circle" width="100px" height="80px" src="{{$user->profile_img_url}}" />
+                            <img id="profile_pics" class="rounded-circle" width="100px" height="80px" src="https://d4f9k68hk754p.cloudfront.net/fit-in/300x400/enslive_object/user_content/{{$user->profile_img_url}}" />
                         </div>
 
                         <div class="vl"></div>

@@ -25,7 +25,7 @@ class PostNewsController extends Controller
         $newsContent->news_content = $request->newsContent;
         $newsContent->news_title = $request->newsTitle;
         $newsContent->photos_vid = $request->photosVid;
-        $newsContent->posted_by = "Vipul";
+        $newsContent->posted_by = auth()->user()->name;
         $newsContent->should_notify = $request->should_notify;
         $newsContent->what_is = $request->whatIs;
         $newsContent->save();
@@ -47,19 +47,37 @@ class PostNewsController extends Controller
 
         $images=array();
         if($request->hasFile('image')){
-            $file = $request->file('image');
-            $imageName=time().$file->getClientOriginalName();
-            $filePath = 'enslive_object/news_content/' . $imageName;
-            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $files = $request->file('image');
+            foreach($files as $file){
 
-            return [
-                "url" => $imageName,
-                "success" => "true",
-                "message" => "Image uploaded successfully",
-            ];
+                $extension = $file->getClientOriginalExtension();
+                $imageName = time().rand(1,100).'.'.$extension;
+                $filePath = 'enslive_object/news_content/'.$imageName;
+                Storage::disk('s3')->put($filePath,  file_get_contents($file));
+                $images[]=$filePath;
+            }
+
+            if(sizeof($images) == 0){
+                $extension = $files->getClientOriginalExtension();
+                $imageName = time().rand(1,100).'.'.$extension;
+                $filePath = 'enslive_object/news_content/'.$imageName;
+                Storage::disk('s3')->put($filePath,  file_get_contents($files));
+
+                return ["url" => $filePath,
+                    "message" => "Successfully Uploaded !!!",
+                    "success" => "true"];
+            }
+
+            return ["url" => implode("|",$images),
+                "message" => "Successfully Uploaded !!!",
+                "success" => "true"];
+
         }else {
-            http_response_code(400);
-            return ["message" => "Image not uploaded"];
+
+
+            return ["url" => "",
+                "message" => "Something Went Wrong",
+                "success" => "false"];
         }
     }
 }

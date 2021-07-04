@@ -22,7 +22,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <!-- search User things End -->
-                    <div class="col-md-8" id="user_edit_details">
+                    <div class="col-lg-8" id="user_edit_details">
                         <div class="card">
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title">Add New Reporter Profile</h4>
@@ -32,7 +32,7 @@
                                 <form class="form-horizontal" action="{{ route('add_user.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-6 col-lg-7">
+                                        <div class="col-12 col-lg-7">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
@@ -47,7 +47,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="bmd-label-static">User Password</label>
-                                                        <input type="password" name="password" class="form-control"
+                                                        <input type="text" name="password" class="form-control"
                                                                id="userPass">
                                                     </div>
                                                 </div>
@@ -110,13 +110,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-12 col-lg-3" style="margin-top: 64px;">
+                                        <div class="col-12 col-lg-4" style="margin-top: 64px;">
                                             <div class="col-md-12">
                                                 <div class="card card-profile">
                                                     <div class="card-avatar">
                                                         <a href="javascript:;">
-                                                            <img id="profileImg" class="img"
-                                                                 src="assets/img/dummy_person.png"/>
+                                                            <img id="profileImg" class="img" style="display: block;width: 100%;"
+                                                                 src="{{asset('public/img/dummy_person.png')}}"/>
                                                         </a>
                                                     </div>
                                                     <div class="card-body">

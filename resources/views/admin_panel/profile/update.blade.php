@@ -46,7 +46,8 @@
                                 <p class="card-category">Complete your profile</p>
                             </div>
                             <div class="card-body">
-                                <form class="form-horizontal" action="{{ route('post_news.store') }}" method="POST">
+                                <form class="form-horizontal" action="{{ route('profile_user.update', 0) }}" method="POST">
+                                    <input name="_method" type="hidden" value="PATCH">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-5">
@@ -107,7 +108,7 @@
                         <div class="card card-profile">
                             <div class="card-avatar">
                                 <a href="javascript:;">
-                                    <img id="profileImg" class="img" src="assets/img/dummy_person.png" />
+                                    <img id="profileImg" class="img" src="{{asset('public/img/dummy_person.png')}}" />
                                 </a>
                             </div>
                             <div class="card-body">
@@ -121,4 +122,87 @@
             </div>
         </div>
 
+@endsection
+
+@section('script')
+            <script>
+                function searchUser() {
+                    var mobileNumber = document.getElementById("searchPhoneNumberText");
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/get_user_data",
+                        data: {
+                            'phone_no': mobileNumber.value,
+                        },
+                        cache: false,
+                        success: function(data) {
+                            //                    $("#resultarea").text(data);
+                            var jsonData = data;
+                            document.getElementById("userName").value = jsonData["name"].replace(".","");
+                            document.getElementById("email").value = jsonData["email"].replace(".","");
+                            document.getElementById("designation").value = jsonData["designation"];
+                            if (jsonData["designation"].value == "REPORTER"){
+                                document.getElementById("designation").selectedIndex = "1"
+                            }else if (jsonData["designation"].value == "Sr. Reporter"){
+                                document.getElementById("designation").selectedIndex = "2"
+                            }else if (jsonData["designation"].value == "District Reporter"){
+                                document.getElementById("designation").selectedIndex = "3"
+                            }else if (jsonData["designation"].value == "Bureau Chief"){
+                                document.getElementById("designation").selectedIndex = "4"
+                            }else if (jsonData["designation"].value == "State Reporter"){
+                                document.getElementById("designation").selectedIndex = "5"
+                            }else if (jsonData["designation"].value == "Chief Reporter"){
+                                document.getElementById("designation").selectedIndex = "6"
+                            }else if (jsonData["designation"].value == "Ens Media House"){
+                                document.getElementById("designation").selectedIndex = "7"
+                            }
+
+                            if (jsonData["user_type"] === "USER") {
+                                document.getElementById("isAdminSelect").selectedIndex = "1";
+                            } else {
+                                document.getElementById("isAdminSelect").selectedIndex = "2";
+                            }
+
+                            document.getElementById("profileImg").src = "https://d4f9k68hk754p.cloudfront.net/fit-in/300x400/enslive_object/user_content/" + jsonData["profile_img_url"];
+                            document.getElementById("profileDesignation").innerHTML = jsonData["designation"];
+                            document.getElementById("profileName").innerHTML = jsonData["name"];
+                        }
+                    });
+
+
+
+                }
+
+                function updateDetails() {
+                    var mobileNumber = document.getElementById("searchPhoneNumberText");
+                    var userName = document.getElementById("userName");
+                    var email = document.getElementById("email");
+                    var userType = document.getElementById("isAdminSelect");
+                    var designation = document.getElementById("designation");
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/update_user_data",
+                        data: {
+                            'user_name' : userName.value,
+                            'email' : email.value,
+                            'userType' : userType.value,
+                            'designation' : designation.value,
+                            'phone_number': mobileNumber.value
+                        },
+                        cache: false,
+                        success: function(data) {
+                            //                    $("#resultarea").text(data);
+                            var jsonData = JSON.parse(data);
+                            if(jsonData["success"] === 'yes'){
+                                $.notify("Updated Successfuly !!!");
+                            }
+
+                        }
+                    });
+
+                }
+
+            </script>
 @endsection

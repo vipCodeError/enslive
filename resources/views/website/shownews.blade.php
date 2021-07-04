@@ -15,7 +15,7 @@
 
         <meta property="og:title" content="{{$eData->news_title}}">
         <meta property="og:description" content="{{$eData->news_content}}">
-        <meta property="og:image" content="https://d4f9k68hk754p.cloudfront.net/fit-in/300x400/{{$eData->photos_vid}}">
+        <meta property="og:image" content="https://d4f9k68hk754p.cloudfront.net/fit-in/400x400/{{$eData->photos_vid}}">
         <meta property="og:url" content="">
         <meta property="og:image:width" content="400">
         <meta property="og:image:height" content="300">
@@ -25,17 +25,17 @@
         <meta name="twitter:site" content="https://enslive.net">
         <meta name="twitter:creator" content="@ensnews">
         <meta name="twitter:description" content="{{$eData->news_content}}">
-        <meta name="twitter:image" content="https://d4f9k68hk754p.cloudfront.net/fit-in/300x400/{{$eData->photos_vid}}">
+        <meta name="twitter:image" content="https://d4f9k68hk754p.cloudfront.net/fit-in/400x400/{{$eData->photos_vid}}">
         <meta name="twitter:card" content="summary_large_image">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="{{asset('css/web_css/index.css')}}">
+        <link rel="stylesheet" href="{{asset('public/css/web_css/index.css')}}">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
         <script src="https://use.fontawesome.com/487757727e.js"></script>
-        <script src="{{'js/moment.js'}}"></script>
+        <script src="{{asset('public/js/moment.js')}}"></script>
         <title>{{$eData->news_title}}</title>
 
 </head>
@@ -63,7 +63,7 @@
                         <div class="row" style="margin-left:0px;margin-right:0px">
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                                 <a href="https://enslive.net">
-                                    <img src="{{asset('img/ens_new_logo.jpeg')}}" width="200px" height="100%" alt="return to frontpage">
+                                    <img src="{{asset('public/img/ens_new_logo.jpeg')}}" width="200px" height="100%" alt="return to frontpage">
                                 </a>
                             </div>
 
@@ -80,6 +80,7 @@
 
             <!--    Navbar            -->
             <!--    Navbar            -->
+                    <!--    Navbar            -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nnav">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,40 +92,40 @@
                             <a class="nav-link" href="https://enslive.net">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Mandal">Mandal</a>
+                            <a class="nav-link" href="{{route('cat_show_news', 'Mandal')}}">Mandal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=District">District</a>
+                            <a class="nav-link" href="{{route('cat_show_news', 'District')}}">District</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=State">State</a>
+                            <a class="nav-link" href="{{route('cat_show_news', 'State')}}">State</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=National">National</a>
+                            <a class="nav-link" href="{{route('cat_show_news', 'National')}}">National</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=World">World</a>
+                            <a class="nav-link" href="{{route('cat_show_news', 'World')}}">World</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 More
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Histroy">History</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Tourism">Tourism</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Health">Health</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Business">Business</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=ENS">ENS</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Video">Video</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Crime">Crime</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Political">Political</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Education">Education</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Job">Job</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Humanity">Humanity</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Cinema">Cinema</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Kitchen">Kitchen</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Sports">Sports</a>
-                                <a class="dropdown-item" href="https://enslive.net/NewsLFKAF/catsdlp.php?newsC=Photos">Photos</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'History')}}">History</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Tourism')}}">Tourism</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Health')}}">Health</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Business')}}">Business</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'ENS')}}">ENS</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Video')}}">Video</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Crime')}}">Crime</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Political')}}">Political</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Education')}}">Education</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Job')}}">Job</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Humanity')}}">Humanity</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Cinema')}}">Cinema</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Kitchen')}}">Kitchen</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Sports')}}">Sports</a>
+                                <a class="dropdown-item" href="{{route('cat_show_news', 'Photos')}}">Photos</a>
                             </div>
                         </li>
                     </ul>
@@ -194,7 +195,8 @@
 
 
             <div class="newsContentBig">
-                    {!!html_entity_decode($eData->news_content)!!}
+
+                {!!html_entity_decode($eData->news_content)!!}
             </div>
 
             <div class="col-5 col-sm-5 col-md-4 col-lg-4 share_this_content">
@@ -217,11 +219,18 @@
                 <div class="title_recommeded">
                     <h6>సిఫార్సు</h6>
                 </div>
-                @foreach($recomendedEdition as $rEdition)
+                 @foreach($recomendedEdition as $rEdition)
                     <div class="list_news_card">
                         <div class="news_card_list">
                             <div class="small_picture">
+                              @if($rEdition->photos_vid == null || str_contains($rEdition->photos_vid, 'upload'))
+                    <a href="{{route('show_web', $rEdition->id)}}">
+                        <a href=""><img src="https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png"
+                                        width="120px height="70px;"></a>
+
+                        @else
                                 <a href=""><img src="https://d4f9k68hk754p.cloudfront.net/fit-in/300x300/{{$rEdition->photos_vid}}" width="100px" height="70px"></a>
+                      @endif
                             </div>
 
                             <div class="news_title_list">
@@ -242,6 +251,11 @@
         </div>
 
     </div>
+
+
+
+
+
 
     <hr class="border_line">
 
@@ -322,7 +336,6 @@
     });
 </script>
 
-
 <script>
 
     function openFacebookShare(){
@@ -353,9 +366,9 @@
 <script>
     $(document).ready(function(){
         var paths =
-            [ "https://practicebuckett123.s3.ap-south-1.amazonaws.com/ca10b4e1-9d44-4110-8915-81da292ab3ed.jpeg",
-                "https://practicebuckett123.s3.ap-south-1.amazonaws.com/7eefb065-0c34-4f6c-8677-edd27b437dc7.jpeg",
-                "https://practicebuckett123.s3.ap-south-1.amazonaws.com/4d120e9f-d5c3-4240-8245-8c8a752625e7.jpeg"];
+            [ "https://practicebuckett123.s3.ap-south-1.amazonaws.com/enslive_object/ads/7feb3af2-eadd-4213-b9e9-acee1e36900c.jfif",
+                "https://practicebuckett123.s3.ap-south-1.amazonaws.com/enslive_object/ads/b0100a8a-056d-4e7b-8591-7ce852ba60a1.jfif",
+                "https://practicebuckett123.s3.ap-south-1.amazonaws.com/enslive_object/ads/fdc1d46f-f4a4-4c28-b6fb-6b9f467a9e87.jfif"];
 
         var img = document.getElementById("ads_img_ttt");
         var i = 0;

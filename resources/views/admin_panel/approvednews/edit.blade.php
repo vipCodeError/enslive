@@ -106,7 +106,7 @@
                                             <div class="col-md-12" id="youtubeTag">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Youtube Url</label>
-                                                    <input type="text" name="photos_vid" value="{{$newsC->photos_vid}}" class="form-control" id="youtubeUrl">
+                                                    <input type="text" name="youtube_link" value="{{$newsC->photos_vid}}" class="form-control" id="youtubeUrl">
                                                 </div>
                                             </div>
 
@@ -143,7 +143,16 @@
 
                                         </form>
                                     </div>
-
+                                    <div class="col-md-4">
+                                        @if($newsC->what_is == "IMAGES" || $newsC->what_is == "FULL IMAGES" || $newsC->what_is == "MULTIPLES IMAGES")
+                                            <img width="100%" height="250px" style="margin: 10px" id="img_box" src="https://d4f9k68hk754p.cloudfront.net/fit-in/300x400/{{$newsC->photos_vid}}">
+                                        @endif
+                                        @if($newsC->what_is == "FULL VIDEOS" || $newsC->what_is == "VIDEOS" || $newsC->what_is == "YOUTUBE")
+                                                <div class="embed-responsive embed-responsive-16by9">
+                                                    <iframe class="embed-responsive-item" src="https://practicebuckett123.s3.ap-south-1.amazonaws.com/{{$newsC->photos_vid}}" allowfullscreen></iframe>
+                                                </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>

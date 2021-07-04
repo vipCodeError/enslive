@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\NewsContent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class ProfileController extends Controller
+class ReviewNewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $newsContent = NewsContent::orderByDesc("created_at")->where('posted_by', '=', Auth()->user()->name)->paginate(10);
+        return view('admin_panel.review_news.index', compact('newsContent'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('admin_panel.profile.update');
+        //
     }
 
     /**
@@ -70,19 +70,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::where('name', '=', $request->user_name)->first();
-        if($user){
-            $user->name = $request->user_name;
-            $user->email = $request->email;
-            $user->user_type = $request->userType;
-            $user->designation = $request->designation;
-            $user->phone = $request->phone_number;
-            $user->save();
-
-            return redirect()->route("profile_user.update")->with('success','New User Created successfully!');
-        }
-
-        return redirect()->route("profile_user.update")->with('error','Something went wrongs');
+        //
     }
 
     /**
