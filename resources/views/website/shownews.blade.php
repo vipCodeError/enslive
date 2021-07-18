@@ -1,146 +1,5 @@
-
-<!doctype html>
-<html lang="en">
-
-<head>
-
-        <link rel="canonical" href="">
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="content-language" content="te">
-
-        <meta property="fb:app_id" content="189091451656210">
-        <meta property="og:site_name" content="EnsLive">
-
-        <meta property="og:title" content="{{$eData->news_title}}">
-        <meta property="og:description" content="{{$eData->news_content}}">
-        <meta property="og:image" content="https://d4f9k68hk754p.cloudfront.net/fit-in/400x400/{{$eData->photos_vid}}">
-        <meta property="og:url" content="">
-        <meta property="og:image:width" content="400">
-        <meta property="og:image:height" content="300">
-        <meta property="og:image:alt" content="">
-
-        <meta name="twitter:title" content="{{$eData->news_title}}">
-        <meta name="twitter:site" content="https://enslive.net">
-        <meta name="twitter:creator" content="@ensnews">
-        <meta name="twitter:description" content="{{$eData->news_content}}">
-        <meta name="twitter:image" content="https://d4f9k68hk754p.cloudfront.net/fit-in/400x400/{{$eData->photos_vid}}">
-        <meta name="twitter:card" content="summary_large_image">
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-        <link rel="stylesheet" href="{{asset('public/css/web_css/index.css')}}">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap" rel="stylesheet">
-        <script src="https://use.fontawesome.com/487757727e.js"></script>
-        <script src="{{asset('public/js/moment.js')}}"></script>
-        <title>{{$eData->news_title}}</title>
-
-</head>
-
-<body>
-
-<div class="container" >
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-
-            <!--    Logos       -->
-            <section class="logo-block">
-                <div class="row">
-                    <div id="logo" class="logo col-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="today_date">
-                            <div class="col-3 col-sm-3 col-md-2 col-lg-2 follow_us">
-                                <a href="https://www.facebook.com/enslive.net"><i class="fa fa-facebook" aria-hidden="true"></i></a>|
-                                <a href="https://twitter.com/balabhaannu"><i class="fa fa-twitter" aria-hidden="true"></i></a>|
-                                <a href="https://www.linkedin.com/in/ens-live-280494145/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>|
-                                <a href="https://www.instagram.com/ens_balu/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            </div>
-                            <p>| </p>
-                        </div>
-
-                        <div class="row" style="margin-left:0px;margin-right:0px">
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                <a href="https://enslive.net">
-                                    <img src="{{asset('public/img/ens_new_logo.jpeg')}}" width="200px" height="100%" alt="return to frontpage">
-                                </a>
-                            </div>
-
-                            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                                <img id="ads_img_ttt" src="https://practicebuckett123.s3.ap-south-1.amazonaws.com/7eefb065-0c34-4f6c-8677-edd27b437dc7.jpeg" width="100%" height="100%">
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </section>
-
-            <!--    Navbar            -->
-            <!--    Navbar            -->
-                    <!--    Navbar            -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nnav">
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="https://enslive.net">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('cat_show_news', 'Mandal')}}">Mandal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('cat_show_news', 'District')}}">District</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('cat_show_news', 'State')}}">State</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('cat_show_news', 'National')}}">National</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('cat_show_news', 'World')}}">World</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                More
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'History')}}">History</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Tourism')}}">Tourism</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Health')}}">Health</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Business')}}">Business</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'ENS')}}">ENS</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Video')}}">Video</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Crime')}}">Crime</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Political')}}">Political</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Education')}}">Education</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Job')}}">Job</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Humanity')}}">Humanity</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Cinema')}}">Cinema</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Kitchen')}}">Kitchen</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Sports')}}">Sports</a>
-                                <a class="dropdown-item" href="{{route('cat_show_news', 'Photos')}}">Photos</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-3 col-sm-3 col-md-2 col-lg-2 follow_us_nav">
-                    <a href="https://www.facebook.com/enslive.net"><i class="fa fa-facebook" aria-hidden="true"></i></a>|
-                    <a href="https://twitter.com/balabhaannu"><i class="fa fa-twitter" aria-hidden="true"></i></a>|
-                    <a href="https://www.linkedin.com/in/ens-live-280494145/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>|
-                    <a href="https://www.instagram.com/ens_balu/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                </div>
-            </nav>
-        </div>
-    </div>
-</div>
-
+@extends('website.layout.app')
+@section('content')
 <!-- Latest News   -->
 <div class="container" style="padding-left: 31px;padding-right: 15px;">
     <div class ="row">
@@ -205,16 +64,9 @@
                 <a onclick="openTwitterShare()"><i class="fa fa-twitter" aria-hidden="true"></i></a>
             </div>
 
-
         </div>
 
-        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-4" style="
-    margin-left: 0;
-    margin-top: 2rem;
-    background-color: #fff;
-">
-
-
+        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-4" style="margin-left: 0;margin-top: 2rem;background-color: #fff;">
             <div class="recomended_news">
                 <div class="title_recommeded">
                     <h6>సిఫార్సు</h6>
@@ -224,9 +76,9 @@
                         <div class="news_card_list">
                             <div class="small_picture">
                               @if($rEdition->photos_vid == null || str_contains($rEdition->photos_vid, 'upload'))
-                    <a href="{{route('show_web', $rEdition->id)}}">
+                    <a href="{{route('show_web', [$rEdition->edition_slug ?? "", $rEdition->id ?? "" ])}}">
                         <a href=""><img src="https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png"
-                                        width="120px height="70px;"></a>
+                                        width="120px" height="70px"></a>
 
                         @else
                                 <a href=""><img src="https://d4f9k68hk754p.cloudfront.net/fit-in/300x300/{{$rEdition->photos_vid}}" width="100px" height="70px"></a>
@@ -234,7 +86,7 @@
                             </div>
 
                             <div class="news_title_list">
-                                <a href = "{{route('show_web', $rEdition->id)}}">
+                                <a href = "{{route('show_web', [$rEdition->edition_slug ?? "", $rEdition->id ?? "" ])}}">
                                     <h6>{{$rEdition->news_title}}</h6>
                                 </a>
                             </div>
@@ -251,90 +103,7 @@
         </div>
 
     </div>
-
-
-
-
-
-
-    <hr class="border_line">
-
-    <div class="footer shadow-sm p-3 mb-0 bg-white rounded" style="margin-left: -14px;">
-        <br>
-        <div class="row d-flex justify-content-between ">
-            <div class="col-4 col-sm-4 col-md-2 col-lg-2 download_at">
-                <h7>Downloads</h7>
-                <a href=""><i class="fa fa-android" aria-hidden="true"></i></a>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-2 col-lg-2 follow_us">
-                <h7>Follow us</h7>
-                <a href="https://www.facebook.com/enslive.net"><i class="fa fa-facebook" aria-hidden="true"></i></a>|
-                <a href="https://twitter.com/balabhaannu"><i class="fa fa-twitter" aria-hidden="true"></i></a>|
-                <a href="https://www.linkedin.com/in/ens-live-280494145/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>|
-                <a href="https://www.instagram.com/ens_balu/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </div>
-        </div>
-
-        <hr class="footer_line">
-
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 footer_notem mt-5">
-
-        </div>
-
-
-
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 owner_details_link">
-            <div class="row d-flex justify-content-between">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 ">
-                    <h8><a href="">About Us</a></h8> |
-                    <h8><a href="">Privacy</a></h8> |
-                    <h8><a href="">Contact Us</a></h8> |
-                    <h8><a href="">Terms and Conditions</a></h8>
-                </div>
-
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6" style="text-align: right">
-                    <h8><a href="">Copyright@2020ENSLive</a></h8>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
-
-</div>
-
-
-<script>
-    window.onscroll = function() {
-        myFunction()
-    };
-
-    var navbar = document.getElementById("nnav");
-    var sticky = navbar.offsetTop;
-
-    function myFunction() {
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
-            $(".follow_us_nav").show();
-        } else {
-            navbar.classList.remove("sticky");
-            $(".follow_us_nav").hide();
-        }
-    }
-</script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-
-<script>
-
-    $(document).ready(function(){
-        document.getElementsByClassName("today_date")[0].querySelector("p").textContent = moment().format('LLLL');
-    });
-</script>
 
 <script>
 
@@ -354,37 +123,5 @@
     }
 </script>
 
-<script>
-    function truncateText(content, maxLength) {
-        var truncated = "";
-        if (content.length > maxLength) {
-            truncated = content.substr(0,maxLength) + '...';
-        }
-        return truncated;
-    }
-</script>
-<script>
-    $(document).ready(function(){
-        var paths =
-            [ "https://practicebuckett123.s3.ap-south-1.amazonaws.com/enslive_object/ads/7feb3af2-eadd-4213-b9e9-acee1e36900c.jfif",
-                "https://practicebuckett123.s3.ap-south-1.amazonaws.com/enslive_object/ads/b0100a8a-056d-4e7b-8591-7ce852ba60a1.jfif",
-                "https://practicebuckett123.s3.ap-south-1.amazonaws.com/enslive_object/ads/fdc1d46f-f4a4-4c28-b6fb-6b9f467a9e87.jfif"];
 
-        var img = document.getElementById("ads_img_ttt");
-        var i = 0;
-        var timer = setInterval(function(){
-            // If we've reached the end of the array...
-            if(i >= paths.length){
-                //clearInterval(timer);     // Stop the timer
-                // return;                   // Exit the function
-                i=0;
-            }
-            img.src = paths[i++]; // Sete the path to the current counter and then increase the counter
-        }, 5000);
-    });
-
-</script>
-
-
-
-</body></html>
+@endsection

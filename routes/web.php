@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostNewsController;
 use App\Http\Controllers\ApprovedNewsController;
@@ -19,6 +21,7 @@ use App\Http\Controllers\ReviewNewsController;
 |
 */
 
+
 Route::get('/', function () {
     $news_content = DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
         ->join('count_news','news_content.id', '=','count_news.id')
@@ -27,6 +30,8 @@ Route::get('/', function () {
             'count_news.comments_count', 'count_news.view_count'])
         ->where('is_approved','APPROVED')
         ->where('what_is', '!=', 'FULL IMAGES SINGLE')
+        ->Where('what_is', '!=', 'VIDEO')
+        ->Where('what_is', '!=', 'FULL VIDEO')
         ->orderByDesc("created_at")->limit(30)->get();
 
     $mandal_news = newsContentByEdition("Mandal News Card");
@@ -51,7 +56,7 @@ Route::get('/', function () {
 
     $kitchen_news = newsContentByEdition("Kitchen News Card");
     $sports_news = newsContentByEdition("Sports News Card");
-    $videos_news = newsContentByEdition("Video News Card");
+    $videos_news = newsContentByEditionVideos("Video News Card");
 
 	$youtube_news = newsContentByEdition("Youtube News Card");
     return view(    'website/index',
@@ -76,7 +81,9 @@ Route::get('/admin', function () {
     return view(    'auth/login');
 });
 
-Route::get("news/{id}", function ($id) {
+Route::get("Ens-National-News-Agency/{edition_slug}/{id}", function ($edition_slug, $id) {
+
+    // dd($slug);
     $eData = DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
         ->join('count_news','news_content.id', '=','count_news.id')
         ->select(['news_content.*','users.designation','users.profile_img_url','users.user_type', 'users.name',
@@ -85,21 +92,25 @@ Route::get("news/{id}", function ($id) {
         ->where('is_approved','APPROVED')
         ->where('news_content.id', $id)
         ->first();
-	$recomendedEdition = DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
+
+    $recomendedEdition = DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
         ->join('count_news','news_content.id', '=','count_news.id')
         ->select(['news_content.*','users.designation','users.profile_img_url','users.user_type', 'users.name',
             'count_news.share_count','count_news.likes_count',
             'count_news.comments_count', 'count_news.view_count'])
         ->where('is_approved','APPROVED')
-        ->where('news_content.edition', "Mandal News Card")
+        ->where('news_content.edition_slug', $edition_slug)
+        ->orderByDesc('created_at')
         ->limit(8)->get();
 
     return view('website.shownews', compact('eData', 'recomendedEdition'));
 })->name('show_web');
 
 
-Route::get("show_news/{news_card}", function ($news_card){
-    $eData = DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
+Route::get("news-edition/{news_card}", function ($news_card){
+    //dd($news_card);
+
+    $nCardData = DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
         ->join('count_news','news_content.id', '=','count_news.id')
         ->select(['news_content.*','users.designation','users.profile_img_url','users.user_type', 'users.name',
             'count_news.share_count','count_news.likes_count',
@@ -110,9 +121,11 @@ Route::get("show_news/{news_card}", function ($news_card){
         ->orderByDesc('created_at')
         ->paginate(15);
 
-        return view('website.category_news', compact('eData'));
+    return view('website.category_news', compact('nCardData'));
 
 })->name('cat_show_news');
+
+
 
 Route::group(['middleware' => 'auth'], function(){
     Route::resource("add_user", AddUserController::class);
@@ -123,6 +136,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource("approved_news", ApprovedNewsController::class);
     Route::resource("review_news", ReviewNewsController::class);
 });
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $totalPost = NewsContent::where('posted_by', auth()->user()->name)->count();
@@ -156,9 +170,26 @@ function newsContentByEdition($edition){
         ->select(['news_content.*','users.designation','users.profile_img_url','users.user_type',
             'count_news.share_count','count_news.likes_count',
             'count_news.comments_count', 'count_news.view_count'])
-        ->where('is_approved','APPROVED')
-        ->where('what_is', '!=', 'FULL IMAGES SINGLE')
+        ->Where('is_approved','APPROVED')
+        ->Where('edition', $edition)
+        ->Where('what_is', '!=', 'FULL IMAGES SINGLE')
+        ->Where('what_is', '!=', 'VIDEO')
+        ->Where('what_is', '!=', 'FULL VIDEO')
+        ->orderByDesc("created_at")->limit(5)->get();
+}
+
+function newsContentByEditionVideos($edition){
+    return DB::table('news_content')->join('users','news_content.posted_by', '=','users.name')
+        ->join('count_news','news_content.id', '=','count_news.id')
+        ->select(['news_content.*','users.designation','users.profile_img_url','users.user_type',
+            'count_news.share_count','count_news.likes_count',
+            'count_news.comments_count', 'count_news.view_count'])
+        ->Where('is_approved','APPROVED')
+        ->Where('what_is', '!=', 'FULL IMAGES SINGLE')
+        ->Where('what_is', '=', 'VIDEO')
+        ->Where('what_is', '=', 'FULL VIDEO')
         ->Where('edition', $edition)
         ->orderByDesc("created_at")->limit(5)->get();
 }
+
 

@@ -10,11 +10,12 @@ class ApprovedNewsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
         $newsContent = NewsContent::orderByDesc("created_at")->paginate(10);
+        //dd($newsContent);
         return view('admin_panel.approvednews.index', compact('newsContent'));
     }
 
@@ -70,14 +71,15 @@ class ApprovedNewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+
+    public function update(Request $request, $is_approved)
     {
         $newsContent = NewsContent::find($request->newsId);
-        $newsContent->is_approved = $request->is_approved;
+        $newsContent->is_approved = $is_approved;
         $newsContent->save();
 
-		//if($request->should_notify  == "Yes"){
-          if($request->is_approved == "APPROVED"){
+		if($request->should_notify  == "Yes"){
+          if($is_approved == "APPROVED"){
               $this->sendFCM($newsContent->what_is,
                   $newsContent->news_content,
                   $newsContent->district_name,
@@ -87,8 +89,8 @@ class ApprovedNewsController extends Controller
                   $newsContent->news_title,
                   $newsContent->photos_vid);
           }
-       // }
-        
+        }
+
 
         return redirect()->route("approved_news.index");
     }
